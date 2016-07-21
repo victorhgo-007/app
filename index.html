@@ -79,7 +79,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="{{baseUrl}}">
+		
+			<paper-submenu>
+				<paper-item class="menu-trigger">Topics</paper-item>
+				<paper-menu class="menu-content">
+					<a data-route = "home" href="/"><paper-item>Inicio</paper-item></a>
+					<a data-route = "home" href="/users"><paper-item>Alta</paper-item></a>
+					<a data-route="busqueda" href="/contact"><paper-item>Busqueda</paper-item></a>				  
+				</paper-menu>
+			</paper-submenu>
+		
+          <!--<a data-route="home" href="{{baseUrl}}">
             <iron-icon icon="home"></iron-icon>
             <span>Home</span>
           </a>
@@ -92,7 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a data-route="contact" href="{{baseUrl}}contact">
             <iron-icon icon="mail"></iron-icon>
             <span>Contact</span>
-          </a>
+          </a>-->
         </paper-menu>
       </paper-scroll-header-panel>
 
