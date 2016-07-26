@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
-  <template is="dom-bind" id="app1">
+  <template is="dom-bind" id="app">
 
     <paper-drawer-panel id="paperDrawerPanel">
       <!-- Drawer Scroll Header Panel -->
@@ -79,30 +79,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
-		
+
 			<paper-submenu>
 				<paper-item class="menu-trigger">Topics</paper-item>
 				<paper-menu class="menu-content">
-					<a data-route = "home" href="/"><paper-item>Inicio</paper-item></a>
-					<a data-route = "home" href="/users"><paper-item>Alta</paper-item></a>
-					<a data-route="busqueda" href="/contact"><paper-item>Busqueda</paper-item></a>				  
+          <a data-route = "home" href="{{baseUrl}}"><paper-item>Inicio</paper-item></a>
+					<a data-route = "users" href="{{baseUrl}}users"><paper-item>Alta</paper-item></a>
+					<a data-route = "contact" href="{{baseUrl}}contact"><paper-item>Busqueda</paper-item></a>
+          <a data-route = "login" href="{{baseUrl}}login"><paper-item>Login</paper-item></a>
 				</paper-menu>
 			</paper-submenu>
-		
-          <!--<a data-route="home" href="{{baseUrl}}">
-            <iron-icon icon="home"></iron-icon>
-            <span>Home</span>
-          </a>
 
-          <a data-route="users" href="{{baseUrl}}users">
-            <iron-icon icon="info"></iron-icon>
-            <span>Users</span>
-          </a>
-
-          <a data-route="contact" href="{{baseUrl}}contact">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
-          </a>-->
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -132,6 +119,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Main Content -->
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
+            <section data-route="login" tabindex="-1">
+              <paper-material elevation="1">
+                <h1 class="page-title" tabindex="-1">Acceso</h1>
+                    <firebase-app
+                      name="ArqApp"
+                      api-key="AIzaSyCLZg88BtEEo5o6XmiYl4bb7cef4u4Xew8"
+                      auth-domain="arqapp-f8f61.firebaseapp.com"
+                      database-url="https://arqapp-f8f61.firebaseio.com">
+                    </firebase-app>
+                <login-fire email-password app-name="ArqApp"></login-fire>
+              </paper-material>
+            </section>
+
             <section data-route="home" tabindex="-1">
               <paper-material elevation="1">
                 <my-greeting></my-greeting>

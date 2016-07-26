@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   window.addEventListener('WebComponentsReady', function() {
     console.log('Componentes registrados - routing_html');
 
-    var app = document.querySelector('#app1');
+    var app = document.querySelector('#app');
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
@@ -51,6 +51,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page(app.baseUrl, function() {
       app.route = 'home';
+      setFocus(app.route);
+    });
+
+    page('/login', function() {
+      app.route = 'login';
       setFocus(app.route);
     });
 
