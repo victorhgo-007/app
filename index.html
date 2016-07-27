@@ -67,31 +67,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
 
   <template is="dom-bind" id="app">
-
-    <paper-drawer-panel id="paperDrawerPanel">
-      <!-- Drawer Scroll Header Panel -->
-      <paper-scroll-header-panel drawer fixed>
-
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
-        </paper-toolbar>
-
-        <!-- Drawer Content -->
-        <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
-
-			<paper-submenu>
-				<paper-item class="menu-trigger">Topics</paper-item>
-				<paper-menu class="menu-content">
-          <a data-route = "home" href="{{baseUrl}}"><paper-item>Inicio</paper-item></a>
-					<a data-route = "users" href="{{baseUrl}}users"><paper-item>Alta</paper-item></a>
-					<a data-route = "contact" href="{{baseUrl}}contact"><paper-item>Busqueda</paper-item></a>
-          <a data-route = "login" href="{{baseUrl}}login"><paper-item>Login</paper-item></a>
-				</paper-menu>
-			</paper-submenu>
-
-        </paper-menu>
-      </paper-scroll-header-panel>
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow>
+      <c-menu></c-menu>
 
       <!-- Main Area -->
       <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
@@ -102,8 +79,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="space"></span>
 
           <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
+          <paper-icon-button icon="account-circle" style="color: white;" onClick="document.querySelector('#logout').style.display = 'block'; dialog.open();"></paper-icon-button>
+
+          <paper-dialog id="dialog" center entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop style="width: 500px;">
+           <paper-dialog-scrollable>
+             <firebase-app
+               name="ArqApp"
+               api-key="AIzaSyCLZg88BtEEo5o6XmiYl4bb7cef4u4Xew8"
+               auth-domain="arqapp-f8f61.firebaseapp.com"
+               database-url="https://arqapp-f8f61.firebaseio.com">
+             </firebase-app>
+             <login-fire email-password app-name="ArqApp"></login-fire>
+           </paper-dialog-scrollable>
+          </paper-dialog>
+
+
+          <a id = "logout" data-route = "logout" href="{{baseUrl}}logout" style="display: none;">
+            <paper-icon-button icon="exit-to-app" style="color: white;"></paper-icon-button>
+          </a>
 
           <!-- Application name -->
           <div class="middle middle-container">
@@ -119,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Main Content -->
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section data-route="login" tabindex="-1">
+            <!-- <section data-route="login" tabindex="-1">
               <paper-material elevation="1">
                 <h1 class="page-title" tabindex="-1">Acceso</h1>
                     <firebase-app
@@ -130,7 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </firebase-app>
                 <login-fire email-password app-name="ArqApp"></login-fire>
               </paper-material>
-            </section>
+            </section> -->
 
             <section data-route="home" tabindex="-1">
               <paper-material elevation="1">
